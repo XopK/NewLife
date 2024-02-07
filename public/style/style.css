@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Prosto+One&display=swap');
+
+* {
+    font-family: 'Prosto One', sans-serif;
+    font-size: 19px;
+}
+.slider-img{
+    max-height: 75vh !important;
+    object-fit: cover;
+}
