@@ -67,6 +67,82 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+        <div class="search-block mt-5">
+            <h1 class="text-center">Поисковик</h1>
+            <form class="d-flex">
+                <input class="form-control me-2 border-success focus-ring focus-ring-success" type="search"
+                    aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Поиск</button>
+            </form>
+        </div>
+        <div class="about-us">
+            <div class="px-4 pt-5 my-5 text-center">
+                <h3 class="display-4 fw-bold text-body-emphasis">Помогли найти более 500 животных.</h3>
+                <div class="col-lg-6 mx-auto">
+                    <p class="lead mb-4">Более трех лет способствуем возвращению питомцев к хозяевам.
+                        Все услуги оказываются бесплатно.
+                    </p>
+                </div>
+                <img src="/images/2698519573.jpg" class="img-fluid rounded-3 shadow-lg mb-4" alt="2698519573.jpg"
+                    width="700" height="500" loading="lazy">
+            </div>
+        </div>
+        <div class="animals-block">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
