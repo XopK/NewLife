@@ -1,4 +1,4 @@
-<nav class="navbar bg-body-tertiary">
+<nav class="navbar bg-body-tertiary fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <div class="d-flex align-items-center">
@@ -22,7 +22,7 @@
                         <a class="nav-link" href="#">Поиск</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Личный кабинет</a>
+                        <a class="nav-link" href="/profile">Личный кабинет</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Добавить</a>
@@ -31,10 +31,10 @@
                         <a class="nav-link" href="#">Отзывы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-success" href="#">Регистрация</a>
+                        <a class="nav-link text-success" href="/signup">Регистрация</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-warning" href="#">Авторизация</a>
+                        <a class="nav-link text-warning" href="/signin">Авторизация</a>
                     </li>
                 </ul>
             </div>

@@ -4,7 +4,37 @@
     font-family: 'Prosto One', sans-serif;
     font-size: 18px;
 }
-.slider-img{
+
+.slider-img {
     max-height: 75vh !important;
     object-fit: cover;
+}
+
+.cont-mt {
+    margin-top: 90px;
+}
+
+.review {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.review img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer a {
+    color: #495057;
+    text-decoration: none;
+    margin: 0 15px;
 }

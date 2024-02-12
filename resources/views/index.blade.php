@@ -13,17 +13,29 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
     <style>
-        .review {
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 8px;
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
         }
 
-        .review img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 10px;
+        .container {
+            flex: 1;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
         }
     </style>
 </head>
@@ -31,7 +43,7 @@
 
 <body>
     <x-header></x-header>
-    <div class="container">
+    <div class="container cont-mt">
         <h1 class="text-center">Новая жизнь</h1>
         <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators">
@@ -101,7 +113,7 @@
             </div>
         </div>
         <div class="animals-block">
-            <h1>Найденные животные</h1>
+            <h1 class="text-center">Найденные животные</h1>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 g-3 mt-3">
                 <div class="col d-flex justify-content-center">
                     <a href="#" style="text-decoration: none">
@@ -208,7 +220,7 @@
             </div>
         </div>
         <div class="search-animals mt-4">
-            <h1 class="mb-4">Форма поиска питомца</h1>
+            <h1 class="mb-4 text-center">Форма поиска питомца</h1>
 
             <form id="petSearchForm">
                 <div class="mb-3">
@@ -237,50 +249,68 @@
         <div class="review-block mt-4">
             <h1 class="mb-4 text-center">Отзывы</h1>
             <hr>
-            <div class="review">
-                <h3>Danya22</h3>
-                <p>Замечательное место для поиска потерянных питомцев! Благодаря этому сервису мы быстро нашли
-                    нашу собаку. Огромное спасибо!</p>
-                <p class="text-muted m-0">Дата отзыва: 10 февраля 2024</p>
+            <div class="review d-flex justify-content-center">
+                <div>
+                    <h3 class="text-center">Danya22</h3>
+                    <img src="/images/359313-sepik.jpg" alt="359313-sepik.jpg" width="600px"
+                        class="mx-auto d-block">
+                    <p class="w-75 mx-auto text-center">Замечательное место для поиска потерянных питомцев! Благодаря
+                        этому
+                        сервису мы
+                        быстро нашли
+                        нашу собаку. Огромное спасибо!</p>
+                    <p class="text-muted m-0 text-center">10 февраля 2024</p>
+                </div>
             </div>
             <hr>
-            <div class="review">
-                <h3>Danya22</h3>
-                <p>Замечательное место для поиска потерянных питомцев! Благодаря этому сервису мы быстро нашли
-                    нашу собаку. Огромное спасибо!</p>
-                <p class="text-muted m-0">Дата отзыва: 10 февраля 2024</p>
+            <div class="review d-flex justify-content-center">
+                <div>
+                    <h3 class="text-center">Danya22</h3>
+                    <img src="/images/359313-sepik.jpg" alt="359313-sepik.jpg" width="600px"
+                        class="mx-auto d-block">
+                    <p class="w-75 mx-auto text-center">Замечательное место для поиска потерянных питомцев! Благодаря
+                        этому
+                        сервису мы
+                        быстро нашли
+                        нашу собаку. Огромное спасибо!</p>
+                    <p class="text-muted m-0 text-center">10 февраля 2024</p>
+                </div>
             </div>
             <hr>
-            <div class="review">
-                <h3>Danya22</h3>
-                <p>Замечательное место для поиска потерянных питомцев! Благодаря этому сервису мы быстро нашли
-                    нашу собаку. Огромное спасибо!</p>
-                <p class="text-muted m-0">Дата отзыва: 10 февраля 2024</p>
-            </div>
-            <hr>
-            <div class="review">
-                <h3>Danya22</h3>
-                <p>Замечательное место для поиска потерянных питомцев! Благодаря этому сервису мы быстро нашли
-                    нашу собаку. Огромное спасибо!</p>
-                <p class="text-muted m-0">Дата отзыва: 10 февраля 2024</p>
-            </div>
-            <hr>
-            <div class="review">
-                <h3>Danya22</h3>
-                <p>Замечательное место для поиска потерянных питомцев! Благодаря этому сервису мы быстро нашли
-                    нашу собаку. Огромное спасибо!</p>
-                <p class="text-muted m-0">Дата отзыва: 10 февраля 2024</p>
-            </div>
-            <hr>
-            <div class="review">
-                <h3>Danya22</h3>
-                <p>Замечательное место для поиска потерянных питомцев! Благодаря этому сервису мы быстро нашли
-                    нашу собаку. Огромное спасибо!</p>
-                <p class="text-muted m-0">Дата отзыва: 10 февраля 2024</p>
+            <div class="review d-flex justify-content-center">
+                <div>
+                    <h3 class="text-center">Danya22</h3>
+                    <img src="/images/359313-sepik.jpg" alt="359313-sepik.jpg" width="600px"
+                        class="mx-auto d-block">
+                    <p class="w-75 mx-auto text-center">Замечательное место для поиска потерянных питомцев! Благодаря
+                        этому
+                        сервису мы
+                        быстро нашли
+                        нашу собаку. Огромное спасибо!</p>
+                    <p class="text-muted m-0 text-center">10 февраля 2024</p>
+                </div>
             </div>
             <hr>
         </div>
+        <div class="container mt-5">
+            <h1 class="mb-4 text-center">Подписка на новости сервиса</h1>
+
+            <form id="subscriptionForm">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Почта</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="agreement" required>
+                    <label class="form-check-label" for="agreement">Согласие на обработку персональных данных</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Подписаться</button>
+            </form>
+        </div>
     </div>
+    <x-footer></x-footer>
 </body>
 
 </html>
