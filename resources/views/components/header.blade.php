@@ -25,7 +25,7 @@
                         <a class="nav-link" href="/profile">Личный кабинет</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Добавить</a>
+                        <a class="nav-link" href="/addAnimal">Добавить</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Отзывы</a>
