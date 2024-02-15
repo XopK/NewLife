@@ -20,4 +20,9 @@ class UserController extends Controller
     {
         return view('profile');
     }
+
+    public function moderator()
+    {
+        return view('moderator');
+    }
 }

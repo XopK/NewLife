@@ -26,3 +26,5 @@ Route::get('/signup', [UserController::class, 'signup']);
 Route::get('/profile', [UserController::class, 'profile']);
 
 Route::get('/addAnimal', [AnimalController::class, 'addAnimal']);
+
+Route::get('/moderator', [UserController::class, 'moderator']);

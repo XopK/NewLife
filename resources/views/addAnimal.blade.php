@@ -59,7 +59,7 @@
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email" name="email"
                         placeholder="name@example.com" required>
-                    <label for="email">Email человека, нашедшего животное</label>
+                    <label for="email">Email</label>
                 </div>
 
                 <div class="form-floating mb-3">
