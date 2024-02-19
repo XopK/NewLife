@@ -32,3 +32,5 @@ Route::get('/moderator', [UserController::class, 'moderator']);
 Route::get('/search', [AnimalController::class, 'search']);
 
 Route::get('/animal', [AnimalController::class, 'animal']);
+
+Route::post('/signup/create', [UserController::class, 'signup_valid']);

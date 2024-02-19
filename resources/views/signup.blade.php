@@ -46,42 +46,91 @@
     <x-header></x-header>
     <div class="container cont-mt">
         <h1 class="text-center">Регистрация</h1>
-        <form action="">
+        <form action="/signup/create" method="POST">
+            @csrf
             <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
-                    required>
+                    >
                 <label for="email">Почта</label>
+                @error('email')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Имя" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Имя" >
                 <label for="name">Имя</label>
+                @error('name')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="surname" name="surname" placeholder="Фамилия" required>
+                <input type="text" class="form-control" id="surname" name="surname" placeholder="Фамилия" >
                 <label for="surname">Фамилия</label>
+                @error('surname')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
 
             <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Телефон" required>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Телефон" >
                 <label for="phone">Телефон</label>
+                @error('phone')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
 
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="password" name="password" placeholder="Пароль"
-                    required>
+                    >
                 <label for="password">Пароль</label>
+                @error('password')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
 
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                    placeholder="Повтор пароля" required>
+                    placeholder="Повтор пароля" >
                 <label for="confirmPassword">Повтор пароля</label>
+                @error('confirmPassword')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
 
             <div class="form-check mb-3">
-                <input type="checkbox" class="form-check-input" id="agree" name="agree" required>
+                <input  type="checkbox" class="form-check-input" id="agree" name="agree" required>
                 <label class="form-check-label" for="agree">Согласие на обработку персональных данных</label>
             </div>
 
