@@ -9,7 +9,7 @@
             <a href="/signin">Авторизация</a>
             <a href="/profile">Личный кабинет</a>
             <a href="#">Найдено животное</a>
-            <a href="#">Поиск</a>
+            <a href="/search">Поиск</a>
         </nav>
     </div>
 </footer>

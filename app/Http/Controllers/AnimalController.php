@@ -10,4 +10,14 @@ class AnimalController extends Controller
     {
         return view('addAnimal');
     }
+
+    public function search()
+    {
+        return view('search');
+    }
+
+    public function animal()
+    {
+        return view('animal');
+    }
 }

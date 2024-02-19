@@ -28,3 +28,7 @@ Route::get('/profile', [UserController::class, 'profile']);
 Route::get('/addAnimal', [AnimalController::class, 'addAnimal']);
 
 Route::get('/moderator', [UserController::class, 'moderator']);
+
+Route::get('/search', [AnimalController::class, 'search']);
+
+Route::get('/animal', [AnimalController::class, 'animal']);

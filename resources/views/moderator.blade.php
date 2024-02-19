@@ -81,38 +81,115 @@
 <body>
     <x-header></x-header>
     <div class="container cont-mt">
-        <h1 class="text-center">Личный кабинет модератора</h1>
+        <div class="d-flex align-items-center justify-content-between">
+            <h1 class="text-center">Личный кабинет модератора</h1>
 
-        <div class="sort-buttons">
-            <button class="btn btn-primary" onclick="sortByDate()">Сортировать по дате</button>
-            <button class="btn btn-primary" onclick="sortByStatus()">Сортировать по статусу</button>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Сортировать
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">По дате</a></li>
+                    <li><a class="dropdown-item" href="#">По статусу</a></li>
+                </ul>
+            </div>
         </div>
 
-        <div class="ad-container">
-            <h2>Объявления пользователей</h2>
 
-            <!-- Пример объявления -->
-            <div class="ad">
-                <p>Статус: На модерации</p>
-                <p>Контактный номер: +7 (XXX) XXX-XX-XX</p>
-                <p>Email: user@example.com</p>
-                <p>Вид животного: Кошка</p>
-                <img src="cat_photo.jpg" alt="Фото животного">
-                <p>Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                <p>Клеймо: отсутствует</p>
-                <p>Район: Центральный</p>
-                <p>Дата нахождения: 10.02.2024</p>
-                <div class="ad-status">Статус: На модерации</div>
-                <div class="ad-actions">
-                    <button class="btn btn-success">Активно</button>
-                    <button class="btn btn-info">Найдено</button>
-                    <button class="btn btn-warning">В архиве</button>
+        <div class="row row-cols-1 row-cols-md-3 g-4 ad-container">
+            <!-- Пример использования карточек в структуре сетки -->
+            <div class="col">
+                <div class="card">
+                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
+                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title">Статус: На модерации</h5>
+                        <p class="card-text">Контактный номер: +7 (XXX) XXX-XX-XX</p>
+                        <p class="card-text">Email: user@example.com</p>
+                        <p class="card-text">Вид животного: Кошка</p>
+                        <p class="card-text">Дополнительная информация: Порода: сиамская кошка, без клейма</p>
+                        <p class="card-text">Клеймо: отсутствует</p>
+                        <p class="card-text">Район: Центральный</p>
+                        <p class="card-text">Дата нахождения: 10.02.2024</p>
+                        <div class="ad-status">Статус: На модерации</div>
+                        <div class="ad-actions">
+                            <button class="btn btn-success">Активно</button>
+                            <button class="btn btn-warning">Найдено</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- Конец примера объявления -->
 
+            <div class="col">
+                <div class="card">
+                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
+                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title">Статус: На модерации</h5>
+                        <p class="card-text">Контактный номер: +7 (XXX) XXX-XX-XX</p>
+                        <p class="card-text">Email: user@example.com</p>
+                        <p class="card-text">Вид животного: Кошка</p>
+                        <p class="card-text">Дополнительная информация: Порода: сиамская кошка, без клейма</p>
+                        <p class="card-text">Клеймо: отсутствует</p>
+                        <p class="card-text">Район: Центральный</p>
+                        <p class="card-text">Дата нахождения: 10.02.2024</p>
+                        <div class="ad-status">Статус: На модерации</div>
+                        <div class="ad-actions">
+                            <button class="btn btn-success">Активно</button>
+                            <button class="btn btn-warning">Найдено</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
+                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title">Статус: На модерации</h5>
+                        <p class="card-text">Контактный номер: +7 (XXX) XXX-XX-XX</p>
+                        <p class="card-text">Email: user@example.com</p>
+                        <p class="card-text">Вид животного: Кошка</p>
+                        <p class="card-text">Дополнительная информация: Порода: сиамская кошка, без клейма</p>
+                        <p class="card-text">Клеймо: отсутствует</p>
+                        <p class="card-text">Район: Центральный</p>
+                        <p class="card-text">Дата нахождения: 10.02.2024</p>
+                        <div class="ad-status">Статус: На модерации</div>
+                        <div class="ad-actions">
+                            <button class="btn btn-success">Активно</button>
+                            <button class="btn btn-warning">Найдено</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
+                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title">Статус: На модерации</h5>
+                        <p class="card-text">Контактный номер: +7 (XXX) XXX-XX-XX</p>
+                        <p class="card-text">Email: user@example.com</p>
+                        <p class="card-text">Вид животного: Кошка</p>
+                        <p class="card-text">Дополнительная информация: Порода: сиамская кошка, без клейма</p>
+                        <p class="card-text">Клеймо: отсутствует</p>
+                        <p class="card-text">Район: Центральный</p>
+                        <p class="card-text">Дата нахождения: 10.02.2024</p>
+                        <div class="ad-status">Статус: На модерации</div>
+                        <div class="ad-actions">
+                            <button class="btn btn-success">Активно</button>
+                            <button class="btn btn-warning">Найдено</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Добавьте другие объявления по аналогии -->
         </div>
+
+
     </div>
     <x-footer></x-footer>
 </body>
