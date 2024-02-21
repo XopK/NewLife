@@ -5,9 +5,13 @@
 
         <nav>
             <a href="/">Главная</a>
-            <a href="/signup">Регистрация</a>
-            <a href="/signin">Авторизация</a>
-            <a href="/profile">Личный кабинет</a>
+            @guest
+                <a href="/signup">Регистрация</a>
+                <a href="/signin">Авторизация</a>
+            @endguest
+            @auth
+                <a href="/profile">Личный кабинет</a>
+            @endauth
             <a href="#">Найдено животное</a>
             <a href="/search">Поиск</a>
         </nav>

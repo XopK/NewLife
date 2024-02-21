@@ -46,16 +46,43 @@
     <x-header></x-header>
     <div class="container cont-mt">
         <h1 class="text-center">Авторизация</h1>
-        <form action="">
+        <form action="/signin/auth" method="POST">
+            @csrf
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="email" name="email" class="form-control" id="floatingInput"
+                    placeholder="name@example.com">
                 <label for="floatingInput">Почта</label>
+                @error('email')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="floatingPassword"
+                    placeholder="Password">
                 <label for="floatingPassword">Пароль</label>
+                @error('password')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
             <button class="btn btn-success" type="submit">Войти</button>
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible mt-3">
+                    <div class="alert-text">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                </div>
+            @endif
         </form>
     </div>
     <x-footer></x-footer>

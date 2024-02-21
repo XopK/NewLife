@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -49,5 +53,49 @@ class UserController extends Controller
                 "confirmPassword.same" => "Пароли должны совпадать!"
             ]
         );
+
+        $user = User::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'id_role' => 1,
+        ]);
+
+        if ($user) {
+            Auth::login($user);
+            return redirect('/')->with('success', 'Успешная регистрация!');
+        } else {
+            return redirect()->back()->with('error', 'Ошибка авторизации!');
+        }
+    }
+
+    public function signin_valid(Request $request)
+    {
+        $request->validate([
+            "email" => "required|email",
+            "password" => "required",
+        ], [
+            "password.required" => "Поле обязательно для заполнения!",
+            "email.required" => "Поле обязательно для заполнения!",
+            "email.email" => "Введите правильный адрес!",
+        ]);
+
+        if (Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+        ])) {
+            return redirect('/')->with('success', 'Успешная авторизация!');
+        } else {
+            return redirect()->back()->with('error', 'Проверьте введеные данные!');
+        }
+    }
+
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return redirect("/");
     }
 }

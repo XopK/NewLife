@@ -14,28 +14,38 @@
             aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Меню навигации</h5>
-                <button type="button" class="btn-close focus-ring focus-ring-dark" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button type="button" class="btn-close focus-ring focus-ring-dark" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
                         <a class="nav-link" href="/search">Поиск</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">Личный кабинет</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">Личный кабинет</a>
+                        </li>
+                    @endauth
                     <li class="nav-item">
                         <a class="nav-link" href="/addAnimal">Добавить</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Отзывы</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-success" href="/signup">Регистрация</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-warning" href="/signin">Авторизация</a>
-                    </li>
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link text-success" href="/signup">Регистрация</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning" href="/signin">Авторизация</a>
+                        </li>
+                    @endguest
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="/logout">Выход</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>
