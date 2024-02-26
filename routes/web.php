@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [AnimalController::class, 'index']);
 
 Route::get('/signin', [UserController::class, 'signin']);
 

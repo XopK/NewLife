@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AnimalController extends Controller
 {
+    public function index()
+    {
+        $animals = Animal::with('photos')->get();
+        return view('index', ['animals' => $animals]);
+    }
+
     public function addAnimal()
     {
         return view('addAnimal');
