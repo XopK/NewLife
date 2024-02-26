@@ -15,6 +15,7 @@ class Animal extends Model
         'animalType',
         'additionalInfo',
         'claim',
+        'find_date',
         'district',
         'id_user',
     ];

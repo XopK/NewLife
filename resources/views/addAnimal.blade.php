@@ -97,7 +97,7 @@
 
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Фото животного</label>
-                    <input class="form-control" name="photo" type="file" id="formFileMultiple" multiple>
+                    <input class="form-control" name="photo[]" type="file" id="formFileMultiple" multiple>
                     @error('photo')
                         <div class="alert alert-danger alert-dismissible">
                             <div class="alert-text">

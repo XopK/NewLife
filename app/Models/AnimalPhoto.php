@@ -14,6 +14,8 @@ class AnimalPhoto extends Model
         'photo',
     ];
 
+    protected $table = 'animal_photos';
+
     public function animals()
     {
         return $this->belongsTo(Animal::class, 'id_animal');

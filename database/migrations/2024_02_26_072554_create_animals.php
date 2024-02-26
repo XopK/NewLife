@@ -19,7 +19,8 @@ return new class extends Migration
             $table->text('additionalInfo');
             $table->string('claim')->nullable();
             $table->string('district');
-            $table->foreignId('id_user')->references('id')->nullable()->on('users');
+            $table->date('find_date');
+            $table->foreignId('id_user')->nullable()->references('id')->on('users');
             $table->timestamps();
         });
     }

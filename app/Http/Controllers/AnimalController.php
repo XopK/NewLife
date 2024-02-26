@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Models\AnimalPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,7 @@ class AnimalController extends Controller
             'contactNumber' => 'required|regex:/\+7\([0-9][0-9][0-9]\)[0-9]{3}(\-)[0-9]{2}(\-)[0-9]{2}$/',
             'email' => 'required|email',
             'animalType' => 'required|regex:/[А-Яа-яЁё]/u',
-            'photo' => 'image|required',
+            'photo' => 'required ',
             'additionalInfo' => 'required',
             'district' => 'required|regex:/[А-Яа-яЁё]/u',
             'foundDate' => 'required|date',
@@ -44,7 +45,6 @@ class AnimalController extends Controller
             'contactNumber.regex' => 'Введите верный формат!',
             'email.email' => 'Введите верный формат!',
             'animalType.regex' => 'Только кириллица!',
-            'photo.image' => 'Только фото (img,png и т.д)',
             'district.regex' => 'Только кириллица!',
             'foundDate' => 'Введите дату!',
         ]);
@@ -56,10 +56,45 @@ class AnimalController extends Controller
                 'animalType' => $request->animalType,
                 'additionalInfo' => $request->additionalInfo,
                 'claim' => $request->claim,
+                'find_date' => $request->foundDate,
                 'district' => $request->district,
                 'id_user' => Auth::user()->id,
             ]);
+            foreach ($request->file('photo') as $photo) {
+                $name = $photo->hashName();
+                $store = $photo->store('public/animals');
+
+                AnimalPhoto::create([
+                    'id_animal' => $animal->id,
+                    'photo' => $name,
+                ]);
+            }
         } else {
+            $animal = Animal::create([
+                'contactNumber' => $request->contactNumber,
+                'email' => $request->email,
+                'animalType' => $request->animalType,
+                'additionalInfo' => $request->additionalInfo,
+                'claim' => $request->claim,
+                'find_date' => $request->foundDate,
+                'district' => $request->district,
+                'id_user' => null,
+            ]);
+
+            foreach ($request->file('photo') as $photo) {
+                $name = $photo->hashName();
+                $store = $photo->store('public/animals');
+
+                AnimalPhoto::create([
+                    'id_animal' => $animal->id,
+                    'photo' => $name,
+                ]);
+            }
+        }
+        if ($animal) {
+            return redirect('/')->with('success', 'Объявление добавлено!');
+        } else {
+            return redirect()->back()->with('error', 'Ошибка!');
         }
     }
 }
