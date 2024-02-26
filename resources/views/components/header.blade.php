@@ -13,12 +13,17 @@
         <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Меню навигации</h5>
+                <h4 class="offcanvas-title" id="offcanvasNavbarLabel">Меню навигации</h4>
                 <button type="button" class="btn-close focus-ring focus-ring-dark" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    @auth
+                        <li class="nav-item">
+                            <h5>Здраствуй, {{Auth::user()->name}}</h5>
+                        </li>
+                    @endauth
                     <li class="nav-item">
                         <a class="nav-link" href="/search">Поиск</a>
                     </li>
