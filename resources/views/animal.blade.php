@@ -57,15 +57,12 @@
 
             <div id="carouselExample" class="carousel slide" style="max-width: 70%">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="d-block w-100" alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="d-block w-100" alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="d-block w-100" alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    </div>
+                    @foreach ($animal->photos as $key => $item)
+                        <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                            <img src="/storage/animals/{{ $item->photo }}" class="d-block w-100"
+                                alt="{{ $item->photo }}">
+                        </div>
+                    @endforeach
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                     data-bs-slide="prev">
@@ -80,14 +77,20 @@
             </div>
 
             <div class="card-body mt-3">
-                <h5 class="card-title">Вид животного: Кошка</h5>
-                <p>Имя нашедшего: Иван Иванов</p>
-                <p>Контактный номер телефона: +7 (XXX) XXX-XX-XX</p>
-                <p>Email нашедшего: ivan@example.com</p>
-                <p>Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                <p>Клеймо: отсутствует</p>
-                <p>Район: Центральный</p>
-                <p>Дата нахождения: 10.02.2024</p>
+                <h5 class="card-title mb-2">Вид животного: {{ $animal->animalType }}</h5>
+                @if ($animal->id_user !== null)
+                    <p>Имя нашедшего: Иван Иванов</p>
+                @endif
+                <p>Контактный номер телефона: {{ $animal->contactNumber }}</p>
+                <p>Email нашедшего: {{ $animal->email }}</p>
+                <p>Дополнительная информация: {{ $animal->additionalInfo }}</p>
+                @if ($animal->claim !== null)
+                    <p>Клеймо: {{ $animal->claim }}</p>
+                @else
+                    <p>Клеймо: Отсутсвует</p>
+                @endif
+                <p>Район: {{ $animal->district }}</p>
+                <p>Дата нахождения: {{ date('d.m.Y', strtotime($animal->find_date)) }}</p>
             </div>
         </div>
     </div>

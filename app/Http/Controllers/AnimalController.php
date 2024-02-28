@@ -25,9 +25,10 @@ class AnimalController extends Controller
         return view('search');
     }
 
-    public function animal()
+    public function animal(Animal $id)
     {
-        return view('animal');
+        $id->load('photos');
+        return view('animal', ['animal' => $id]);
     }
 
     public function animalAdd(Request $request)
