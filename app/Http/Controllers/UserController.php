@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Animal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,12 +23,15 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('profile');
+        $animals = Animal::where('id_user', Auth::user()->id)->with('photos')->orderBy('created_at', 'desc')->get();
+        $find = Animal::where('id_user', Auth::user()->id)->where('status', 2)->get();
+        return view('profile', ['animals' => $animals, 'find' => $find]);
     }
 
     public function moderator()
     {
-        return view('moderator');
+        $animals = Animal::with('photos')->get();
+        return view('moderator', ['animals' => $animals]);
     }
 
     public function signup_valid(Request $request)
@@ -86,6 +90,9 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ])) {
+            if (Auth::user()->id_role == 2) {
+                return redirect('/moderator')->with('success', 'Успешная авторизация!');
+            }
             return redirect('/')->with('success', 'Успешная авторизация!');
         } else {
             return redirect()->back()->with('error', 'Проверьте введеные данные!');

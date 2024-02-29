@@ -53,33 +53,35 @@
 
             <form action="/addAnimal/create" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="form-floating mb-3">
-                    <input type="tel" class="form-control phone" id="contactNumber" name="contactNumber"
-                        placeholder="123456789">
-                    <label for="contactNumber">Контактный номер телефона</label>
-                    @error('contactNumber')
-                        <div class="alert alert-danger alert-dismissible">
-                            <div class="alert-text">
-                                {{ $message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                @guest
+                    <div class="form-floating mb-3">
+                        <input type="tel" class="form-control phone" id="contactNumber" name="contactNumber"
+                            placeholder="123456789">
+                        <label for="contactNumber">Контактный номер телефона</label>
+                        @error('contactNumber')
+                            <div class="alert alert-danger alert-dismissible">
+                                <div class="alert-text">
+                                    {{ $message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
                             </div>
-                        </div>
-                    @enderror
-                </div>
+                        @enderror
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" name="email"
+                            placeholder="name@example.com">
+                        <label for="email">Email</label>
+                        @error('email')
+                            <div class="alert alert-danger alert-dismissible">
+                                <div class="alert-text">
+                                    {{ $message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            </div>
+                        @enderror
+                    </div>
+                @endguest
 
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="email" name="email"
-                        placeholder="name@example.com">
-                    <label for="email">Email</label>
-                    @error('email')
-                        <div class="alert alert-danger alert-dismissible">
-                            <div class="alert-text">
-                                {{ $message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div>
-                        </div>
-                    @enderror
-                </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="animalType" name="animalType"
@@ -142,8 +144,9 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="date" class="form-control" id="foundDate" name="foundDate">
-                    <label for="foundDate">Дата, когда было найдено животное</label>
+                    <input type="date" class="form-control" max="{{ date('Y-m-d') }}" id="foundDate"
+                        name="foundDate">
+                    <label for="foundDate">Дата, когда было найдено животнаое</label>
                     @error('foundDate')
                         <div class="alert alert-danger alert-dismissible">
                             <div class="alert-text">

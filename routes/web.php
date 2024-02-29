@@ -38,3 +38,5 @@ Route::post('/signin/auth', [UserController::class, 'signin_valid']);
 Route::get('/logout', [UserController::class, 'logout']);
 
 Route::post('/addAnimal/create', [AnimalController::class, 'animalAdd']);
+
+Route::get('/moderator/{id}/status', [AnimalController::class, 'change']);

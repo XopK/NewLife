@@ -98,100 +98,65 @@
 
 
         <div class="row row-cols-1 row-cols-md-3 g-4 ad-container">
-            <!-- Пример использования карточек в структуре сетки -->
-            <div class="col">
-                <div class="card">
-                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
-                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
+            @forelse ($animals as $animal)
+                <div class="col">
+                    <div class="card">
+                        @foreach ($animal->photos as $item)
+                            <img src="/storage/animals/{{ $item->photo }}" class="slider-img d-block w-100"
+                                alt="{{ $item->photo }}">
+                        @break
+                    @endforeach
                     <div class="card-body">
-                        <h5 class="card-title">Статус: На модерации</h5>
-                        <p class="card-text">Контактный номер: +7 (XXX) XXX-XX-XX</p>
-                        <p class="card-text">Email: user@example.com</p>
-                        <p class="card-text">Вид животного: Кошка</p>
-                        <p class="card-text">Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                        <p class="card-text">Клеймо: отсутствует</p>
-                        <p class="card-text">Район: Центральный</p>
-                        <p class="card-text">Дата нахождения: 10.02.2024</p>
-                        <div class="ad-status">Статус: На модерации</div>
-                        <div class="ad-actions">
-                            <button class="btn btn-success">Активно</button>
-                            <button class="btn btn-warning">Найдено</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        @if ($animal->status == 0)
+                            <h5 class="card-title">Статус: На модерации</h5>
+                        @elseif($animal->status == 1)
+                            <h5 class="card-title">Статус: Принято</h5>
+                        @else
+                            <h5 class="card-title">Статус: Найдено</h5>
+                        @endif
 
-            <div class="col">
-                <div class="card">
-                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
-                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Статус: На модерации</h5>
-                        <p class="card-text">Контактный номер: +7 (XXX) XXX-XX-XX</p>
-                        <p class="card-text">Email: user@example.com</p>
-                        <p class="card-text">Вид животного: Кошка</p>
-                        <p class="card-text">Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                        <p class="card-text">Клеймо: отсутствует</p>
-                        <p class="card-text">Район: Центральный</p>
-                        <p class="card-text">Дата нахождения: 10.02.2024</p>
-                        <div class="ad-status">Статус: На модерации</div>
-                        <div class="ad-actions">
-                            <button class="btn btn-success">Активно</button>
-                            <button class="btn btn-warning">Найдено</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <p class="card-text">Контактный номер: {{ $animal->contactNumber }}</p>
+                        <p class="card-text">Email: {{ $animal->email }}</p>
+                        <p class="card-text">Вид животного: {{ $animal->animalType }}</p>
+                        <p class="card-text">Дополнительная информация: {{ $animal->additionalInfo }}</p>
+                        @if ($animal->claim !== null)
+                            <p class="card-text">Клеймо: {{ $animal->claim }}</p>
+                        @else
+                            <p class="card-text">Клеймо: отсутствует</p>
+                        @endif
+                        <p class="card-text">Район: {{ $animal->district }}</p>
+                        <p class="card-text">Дата нахождения: {{ date('d.m.Y', strtotime($animal->find_date)) }}</p>
+                        @if ($animal->status == 2)
+                            <div class="ad-actions">
+                                <button class="btn btn-success disabled">В архиве</button>
+                            </div>
+                        @else
+                            <div class="ad-actions">
+                                @if ($animal->status !== 1)
+                                    <a href="/moderator/{{ $animal->id }}/status?status=1"
+                                        class="btn btn-success">Активно</a>
+                                @endif
+                                @if ($animal->status == 1)
+                                    <a href="/moderator/{{ $animal->id }}/status?status=2"
+                                        class="btn btn-warning">Найдено</a>
+                                @endif
+                                <a href="/moderator/{{ $animal->id }}/status?status=3"
+                                    class="btn btn-danger">Удалить</a>
+                            </div>
+                        @endif
 
-            <div class="col">
-                <div class="card">
-                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
-                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Статус: На модерации</h5>
-                        <p class="card-text">Контактный номер: +7 (XXX) XXX-XX-XX</p>
-                        <p class="card-text">Email: user@example.com</p>
-                        <p class="card-text">Вид животного: Кошка</p>
-                        <p class="card-text">Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                        <p class="card-text">Клеймо: отсутствует</p>
-                        <p class="card-text">Район: Центральный</p>
-                        <p class="card-text">Дата нахождения: 10.02.2024</p>
-                        <div class="ad-status">Статус: На модерации</div>
-                        <div class="ad-actions">
-                            <button class="btn btn-success">Активно</button>
-                            <button class="btn btn-warning">Найдено</button>
-                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
-                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Статус: На модерации</h5>
-                        <p class="card-text">Контактный номер: +7 (XXX) XXX-XX-XX</p>
-                        <p class="card-text">Email: user@example.com</p>
-                        <p class="card-text">Вид животного: Кошка</p>
-                        <p class="card-text">Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                        <p class="card-text">Клеймо: отсутствует</p>
-                        <p class="card-text">Район: Центральный</p>
-                        <p class="card-text">Дата нахождения: 10.02.2024</p>
-                        <div class="ad-status">Статус: На модерации</div>
-                        <div class="ad-actions">
-                            <button class="btn btn-success">Активно</button>
-                            <button class="btn btn-warning">Найдено</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Добавьте другие объявления по аналогии -->
-        </div>
+        @empty
+        @endforelse
 
 
     </div>
-    <x-footer></x-footer>
+
+
+</div>
+<x-footer></x-footer>
 </body>
 
 </html>

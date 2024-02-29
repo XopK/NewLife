@@ -10,7 +10,11 @@
                 <a href="/signin">Авторизация</a>
             @endguest
             @auth
-                <a href="/profile">Личный кабинет</a>
+                @if (Auth::user()->id_role == 2)
+                    <a href="/moderator">Личный кабинет</a>
+                @else
+                    <a href="/profile">Личный кабинет</a>
+                @endif
             @endauth
             <a href="#">Найдено животное</a>
             <a href="/search">Поиск</a>

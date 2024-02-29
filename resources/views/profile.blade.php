@@ -84,32 +84,47 @@
         <h1>Личный кабинет пользователя</h1>
 
         <div class="profile-info">
-            <p>Номер телефона: +7 (XXX) XXX-XX-XX <button class="btn btn-link">Изменить</button></p>
-            <p>Email: user@example.com <button class="btn btn-link">Изменить</button></p>
-            <p>Количество добавленных объявлений: 10</p>
-            <p>Количество животных, вернувшихся к хозяевам: 5</p>
-            <p>Дата регистрации: 01.01.2022</p>
-            <p>Дней с момента регистрации: 365</p>
+            <p>Номер телефона: {{ Auth::user()->phone }} 
+            <p>Email: {{ Auth::user()->email }}
+            <p>Количество добавленных объявлений: {{ $animals->count() }}</p>
+            <p>Количество животных, вернувшихся к хозяевам: {{$find->count()}}</p>
+            <p>Дата регистрации: {{ date('d.m.Y', strtotime(Auth::user()->created_at)) }} </p>
+            <p>Дней с момента регистрации: {{ Auth::user()->created_at->diffForHumans() }}</p>
         </div>
 
-        <div class="ads-container">
+        <div class="ads-container ">
             <h2>Объявления пользователя</h2>
+            @forelse ($animals as $item)
+                <div class="ad mb-3">
+                    @if ($item->status == 0)
+                        <p>Статус: На модерации</p>
+                    @elseif($item->status == 1)
+                        <p>Статус: Принято</p>
+                    @else
+                        <p>Статус: Найдено</p>
+                    @endif
 
-            <div class="ad">
-                <p>Статус: Активно</p>
-                <p>Район: Центральный</p>
-                <p>Дата добавления: 10.02.2024</p>
-                <p>Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                <img src="/images/2894c6e765f0c46dd633c2649ec56b2e.jpeg" alt="2894c6e765f0c46dd633c2649ec56b2e.jpeg">
+                    <p>Район: {{ $item->district }}</p>
+                    <p>Дата поимки: {{ date('d.m.Y', strtotime($item->find_date)) }}</p>
+                    <p>Дополнительная информация: {{ $item->additionalInfo }}</p>
+                    @foreach ($item->photos as $image)
+                        <img src="/storage/animals/{{ $image->photo }}" class="slider-img d-block w-100"
+                            alt="{{ $image->photo }}">
+                    @break
+                @endforeach
                 <div class="ad-actions">
                     <button class="btn btn-danger">Удалить</button>
                     <button class="btn btn-primary">Редактировать</button>
                 </div>
             </div>
+        @empty
+            <h1>ПУСТО</h1>
+        @endforelse
 
-        </div>
+
     </div>
-    <x-footer></x-footer>
+</div>
+<x-footer></x-footer>
 </body>
 
 </html>

@@ -108,9 +108,9 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $animal->animalType }}</h5>
                             @if ($animal->id_user !== null)
-                                <p class="card-text"><small class="text-body-secondary">danya22</small></p>
+                                <p class="card-text"><small class="text-body-secondary">Автор: {{$animal->user->name}} {{$animal->user->surname}}</small></p>
                             @else
-                                <p class="card-text"><small class="text-body-secondary">Аноним</small></p>
+                                <p class="card-text"><small class="text-body-secondary">Автор: Аноним</small></p>
                             @endif
                             <p class="card-text">Район: {{ $animal->district }}</p>
                             <p class="card-text">Контактный номер: {{ $animal->contactNumber }}</p>

@@ -45,4 +45,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function animal()
+    {
+        return $this->hasMany(Animal::class, 'id_user');
+    }
 }

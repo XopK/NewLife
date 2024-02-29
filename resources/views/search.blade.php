@@ -106,82 +106,39 @@
             <button type="submit" class="btn btn-primary mt-3">Искать</button>
         </form>
 
-        <!-- Пример отображения результатов поиска -->
+
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card">
-                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
-                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Вид животного: Кошка</h5>
-                        <p>Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                        <p>Клеймо: отсутствует</p>
-                        <p>Район: Центральный</p>
-                        <p>Дата нахождения: 10.02.2024</p>
-                        <p>Контактный номер телефона: +7 (XXX) XXX-XX-XX</p>
+            @forelse ($animals as $animal)
+                <div class="col d-flex justify-content-center">
+                    <a href="/animal/{{$animal->id}}" style="text-decoration: none">
+                        <div class="card shadow border-0" style="width: 18rem;">
+                            @foreach ($animal->photos as $photo)
+                                <img src="/storage/animals/{{ $photo->photo }}" class="card-img-top ind-card-img"
+                                    alt="{{ $photo->photo }}">
+                            @break
+                        @endforeach
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $animal->animalType }}</h5>
+                            @if ($animal->id_user !== null)
+                                <p class="card-text"><small class="text-body-secondary">Автор: {{$animal->user->name}} {{$animal->user->surname}}</small></p>
+                            @else
+                                <p class="card-text"><small class="text-body-secondary">Автор: Аноним</small></p>
+                            @endif
+                            <p class="card-text">Информация {{ $animal->additionalInfo }}</p>
+                            <p class="card-text">Район: {{ $animal->district }}</p>
+                            <p class="card-text">Дата {{ date('d.m.Y', strtotime($animal->find_date)) }}</p>
+                            <p class="card-text">Контактный номер: {{ $animal->contactNumber }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small
+                                class="text-body-secondary">{{ date('d.m.Y', strtotime($animal->created_at)) }}</small>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
-                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Вид животного: Кошка</h5>
-                        <p>Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                        <p>Клеймо: отсутствует</p>
-                        <p>Район: Центральный</p>
-                        <p>Дата нахождения: 10.02.2024</p>
-                        <p>Контактный номер телефона: +7 (XXX) XXX-XX-XX</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
-                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Вид животного: Кошка</h5>
-                        <p>Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                        <p>Клеймо: отсутствует</p>
-                        <p>Район: Центральный</p>
-                        <p>Дата нахождения: 10.02.2024</p>
-                        <p>Контактный номер телефона: +7 (XXX) XXX-XX-XX</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
-                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Вид животного: Кошка</h5>
-                        <p>Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                        <p>Клеймо: отсутствует</p>
-                        <p>Район: Центральный</p>
-                        <p>Дата нахождения: 10.02.2024</p>
-                        <p>Контактный номер телефона: +7 (XXX) XXX-XX-XX</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="/images/aHR0cDovL3d3dy5saXZlc2N.jpg" class="card-img-top"
-                        alt="aHR0cDovL3d3dy5saXZlc2N.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Вид животного: Кошка</h5>
-                        <p>Дополнительная информация: Порода: сиамская кошка, без клейма</p>
-                        <p>Клеймо: отсутствует</p>
-                        <p>Район: Центральный</p>
-                        <p>Дата нахождения: 10.02.2024</p>
-                        <p>Контактный номер телефона: +7 (XXX) XXX-XX-XX</p>
-                    </div>
-                </div>
-            </div>
+        @empty
+        <h1>Ничего не найдено!</h1>
+        @endforelse
 
         </div>
     </div>

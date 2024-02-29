@@ -21,16 +21,23 @@
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     @auth
                         <li class="nav-item">
-                            <h5>Здраствуй, {{Auth::user()->name}}</h5>
+                            <h5>Здраствуй, {{ Auth::user()->name }}</h5>
                         </li>
                     @endauth
                     <li class="nav-item">
                         <a class="nav-link" href="/search">Поиск</a>
                     </li>
                     @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="/profile">Личный кабинет</a>
-                        </li>
+                        @if (Auth::user()->id_role == 2)
+                            <li class="nav-item">
+                                <a class="nav-link" href="/moderator">Личный кабинет</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/profile">Личный кабинет</a>
+                            </li>
+                        @endif
+
                     @endauth
                     <li class="nav-item">
                         <a class="nav-link" href="/addAnimal">Добавить</a>
