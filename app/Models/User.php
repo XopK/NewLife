@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Animal::class, 'id_user');
     }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

@@ -83,24 +83,27 @@
     <div class="container cont-mt">
         <h1 class="text-center">Результаты поиска животных</h1>
 
-        <!-- Дублирование формы поиска с главной страницы -->
-        <form class="mb-3 mt-3">
+        <form class="mb-3 mt-3" method="POST" action="/search/filter">
+            @csrf
             <div class="row">
                 <div class="col-md-3">
                     <label for="animalType" class="form-label">Вид животного</label>
-                    <input type="text" class="form-control" id="animalType" placeholder="Например, кошка">
+                    <input type="text" name="animalType" class="form-control" id="animalType"
+                        placeholder="Например, кошка">
                 </div>
                 <div class="col-md-3">
                     <label for="additionalInfo" class="form-label">Доп. информация</label>
-                    <input type="text" class="form-control" id="additionalInfo" placeholder="Описание обстоятельств">
+                    <input type="text" name="additionalInfo" class="form-control" id="additionalInfo"
+                        placeholder="Описание обстоятельств">
                 </div>
                 <div class="col-md-3">
                     <label for="area" class="form-label">Район</label>
-                    <input type="text" class="form-control" id="area" placeholder="Например, Центральный">
+                    <input type="text" name="area" class="form-control" id="area"
+                        placeholder="Например, Центральный">
                 </div>
                 <div class="col-md-3">
                     <label for="date" class="form-label">Дата</label>
-                    <input type="date" class="form-control" id="date">
+                    <input type="date" max="{{ date('Y-m-d') }}" name="date" class="form-control" id="date">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Искать</button>
@@ -108,9 +111,10 @@
 
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
+
             @forelse ($animals as $animal)
                 <div class="col d-flex justify-content-center">
-                    <a href="/animal/{{$animal->id}}" style="text-decoration: none">
+                    <a href="/animal/{{ $animal->id }}" style="text-decoration: none">
                         <div class="card shadow border-0" style="width: 18rem;">
                             @foreach ($animal->photos as $photo)
                                 <img src="/storage/animals/{{ $photo->photo }}" class="card-img-top ind-card-img"
@@ -120,7 +124,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $animal->animalType }}</h5>
                             @if ($animal->id_user !== null)
-                                <p class="card-text"><small class="text-body-secondary">Автор: {{$animal->user->name}} {{$animal->user->surname}}</small></p>
+                                <p class="card-text"><small class="text-body-secondary">Автор:
+                                        {{ $animal->user->name }} {{ $animal->user->surname }}</small></p>
                             @else
                                 <p class="card-text"><small class="text-body-secondary">Автор: Аноним</small></p>
                             @endif
@@ -131,18 +136,18 @@
                         </div>
                         <div class="card-footer">
                             <small
-                                class="text-body-secondary">{{ date('d.m.Y', strtotime($animal->created_at)) }}</small>
+                                class="text-body-secondary">{{ date('d.m.Y', strtotime($animal->find_date)) }}</small>
                         </div>
                     </div>
                 </a>
             </div>
         @empty
-        <h1>Ничего не найдено!</h1>
+            <h1>Ничего не найдено!</h1>
         @endforelse
 
-        </div>
     </div>
-    <x-footer></x-footer>
+</div>
+<x-footer></x-footer>
 </body>
 
 </html>

@@ -57,7 +57,7 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ $slider->animalType }}</h5>
                         <p>{{ $slider->additionalInfo }}</p>
-                        <a href="/animal/{{$slider->id}}" class="btn btn-primary">Подробнее</a>
+                        <a href="/animal/{{ $slider->id }}" class="btn btn-primary">Подробнее</a>
                     </div>
                 </div>
             @endforeach
@@ -75,9 +75,10 @@
     </div>
     <div class="search-block mt-5">
         <h1 class="text-center">Поисковик</h1>
-        <form class="d-flex">
-            <input class="form-control me-2 border-success focus-ring focus-ring-success" type="search"
-                aria-label="Search">
+        <form class="d-flex" method="POST" action="/search/filter">
+            @csrf
+            <input class="form-control me-2 border-success focus-ring focus-ring-success" name="all"
+                type="search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Поиск</button>
         </form>
     </div>
@@ -98,7 +99,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 g-3 mt-3">
             @forelse ($animals as $animal)
                 <div class="col d-flex justify-content-center">
-                    <a href="/animal/{{$animal->id}}" style="text-decoration: none">
+                    <a href="/animal/{{ $animal->id }}" style="text-decoration: none">
                         <div class="card shadow border-0" style="width: 18rem;">
                             @foreach ($animal->photos as $photo)
                                 <img src="/storage/animals/{{ $photo->photo }}" class="card-img-top ind-card-img"
@@ -108,9 +109,11 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $animal->animalType }}</h5>
                             @if ($animal->id_user !== null)
-                                <p class="card-text"><small class="text-body-secondary">Автор: {{$animal->user->name}} {{$animal->user->surname}}</small></p>
+                                <p class="card-text"><small class="text-body-secondary">Автор:
+                                        {{ $animal->user->name }} {{ $animal->user->surname }}</small></p>
                             @else
-                                <p class="card-text"><small class="text-body-secondary">Автор: Аноним</small></p>
+                                <p class="card-text"><small class="text-body-secondary">Автор: Аноним</small>
+                                </p>
                             @endif
                             <p class="card-text">Район: {{ $animal->district }}</p>
                             <p class="card-text">Контактный номер: {{ $animal->contactNumber }}</p>
@@ -130,75 +133,38 @@
 <div class="search-animals mt-4">
     <h1 class="mb-4 text-center">Форма поиска питомца</h1>
 
-    <form id="petSearchForm">
+    <form id="petSearchForm" method="POST" action="/search/filter">
+        @csrf
         <div class="mb-3">
             <label for="district" class="form-label">Район:</label>
-            <input type="text" class="form-control" id="district" name="district" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="animalType" class="form-label">Вид животного:</label>
-            <select class="form-select" id="animalType" name="animalType" required>
-                <option value="cat">Кошка</option>
-                <option value="dog">Собака</option>
-                <option value="squirrel">Суслик</option>
-                <option value="hamster">Хорек</option>
-            </select>
+            <input type="text" class="form-control" id="district" name="area" required>
         </div>
 
         <div class="mb-3">
             <label for="searchText" class="form-label">Поиск по виду животного:</label>
-            <input type="text" class="form-control" id="searchText" name="searchText">
+            <input type="text" class="form-control" id="searchText" name="animalType">
         </div>
 
-        <button type="button" class="btn btn-primary">Искать питомца</button>
+        <button type="submit" class="btn btn-primary">Искать питомца</button>
     </form>
 </div>
 <div class="review-block mt-4">
     <h1 class="mb-4 text-center">Отзывы</h1>
     <hr>
-    <div class="review d-flex justify-content-center">
-        <div>
-            <h3 class="text-center">Danya22</h3>
-            <img src="/images/359313-sepik.jpg" alt="359313-sepik.jpg" width="600px"
-                class="mx-auto d-block">
-            <p class="w-75 mx-auto text-center">Замечательное место для поиска потерянных питомцев! Благодаря
-                этому
-                сервису мы
-                быстро нашли
-                нашу собаку. Огромное спасибо!</p>
-            <p class="text-muted m-0 text-center">10 февраля 2024</p>
+    @forelse ($reviews as $review)
+        <div class="review d-flex justify-content-center">
+            <div>
+                <h3 class="text-center">{{ $review->user->name }} {{ $review->user->surname }}</h3>
+                <img src="/storage/review/{{ $review->photo_review }}" alt="{{ $review->photo_review }}"
+                    width="600px" class="mx-auto d-block">
+                <p class="w-75 mx-auto text-center">{{ $review->review }}</p>
+                <p class="text-muted m-0 text-center">{{ date('d.m.Y', strtotime($review->created_at)) }}</p>
+            </div>
         </div>
-    </div>
-    <hr>
-    <div class="review d-flex justify-content-center">
-        <div>
-            <h3 class="text-center">Danya22</h3>
-            <img src="/images/359313-sepik.jpg" alt="359313-sepik.jpg" width="600px"
-                class="mx-auto d-block">
-            <p class="w-75 mx-auto text-center">Замечательное место для поиска потерянных питомцев! Благодаря
-                этому
-                сервису мы
-                быстро нашли
-                нашу собаку. Огромное спасибо!</p>
-            <p class="text-muted m-0 text-center">10 февраля 2024</p>
-        </div>
-    </div>
-    <hr>
-    <div class="review d-flex justify-content-center">
-        <div>
-            <h3 class="text-center">Danya22</h3>
-            <img src="/images/359313-sepik.jpg" alt="359313-sepik.jpg" width="600px"
-                class="mx-auto d-block">
-            <p class="w-75 mx-auto text-center">Замечательное место для поиска потерянных питомцев! Благодаря
-                этому
-                сервису мы
-                быстро нашли
-                нашу собаку. Огромное спасибо!</p>
-            <p class="text-muted m-0 text-center">10 февраля 2024</p>
-        </div>
-    </div>
-    <hr>
+        <hr>
+    @empty
+    @endforelse
+
 </div>
 <div class="container mt-5">
     <h1 class="mb-4 text-center">Подписка на новости сервиса</h1>

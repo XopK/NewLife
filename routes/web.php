@@ -40,3 +40,9 @@ Route::get('/logout', [UserController::class, 'logout']);
 Route::post('/addAnimal/create', [AnimalController::class, 'animalAdd']);
 
 Route::get('/moderator/{id}/status', [AnimalController::class, 'change']);
+
+Route::post('/search/filter', [AnimalController::class, 'filter'])->name('searching');
+
+Route::get('/review', [AnimalController::class, 'review']);
+
+Route::post('/review/add', [AnimalController::class, 'reviewadd']);

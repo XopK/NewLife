@@ -16,7 +16,6 @@
                     <a href="/profile">Личный кабинет</a>
                 @endif
             @endauth
-            <a href="#">Найдено животное</a>
             <a href="/search">Поиск</a>
         </nav>
     </div>

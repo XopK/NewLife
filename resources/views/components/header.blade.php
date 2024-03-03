@@ -43,7 +43,7 @@
                         <a class="nav-link" href="/addAnimal">Добавить</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Отзывы</a>
+                        <a class="nav-link" href="/review">Отзывы</a>
                     </li>
                     @guest
                         <li class="nav-item">
