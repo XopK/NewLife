@@ -139,9 +139,9 @@ class AnimalController extends Controller
 
     public function filter(Request $request)
     {
-
         if (isset($request->all)) {
             $results = Animal::query()
+                ->where('status', 1)
                 ->where('animalType', 'like', "%{$request->all}%")
                 ->orWhere('additionalInfo', 'like', "%{$request->all}%")
                 ->orWhere('district', 'like', "%{$request->all}%")
@@ -150,6 +150,7 @@ class AnimalController extends Controller
                 ->get();
         } else {
             $results = Animal::query()
+                ->where('status', 1)
                 ->where('animalType', 'like', "%{$request->animalType}%")
                 ->where('additionalInfo', 'like', "%{$request->additionalInfo}%")
                 ->where('district', 'like', "%{$request->area}%")
